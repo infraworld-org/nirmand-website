@@ -1,0 +1,55 @@
+<!--page
+{
+  "slug": "help",
+  "title": "Help and FAQs",
+  "heading": "Help & FAQs",
+  "eyebrow": "Help",
+  "description": "Answers about the Nirmand app: projects, AI previews, Bricks, Pro, payments, refunds, privacy and deleting your account.",
+  "intro": "Quick answers to the questions people ask most. Can't find yours? Write to <a href=\"mailto:{{emails.support}}\">{{emails.support}}</a>.",
+  "faq_schema": true
+}
+-->
+<h2>Getting started</h2>
+<div class="faq">
+  <details><summary>What is Nirmand?</summary><div><p>Nirmand is one app where your family, architect and contractor plan, preview and build your home together. You create a project, browse {{catalogue.products}} real products from {{catalogue.brands}} brands, see them on photos of your own rooms with AI previews, decide together, and keep every bill, payment and expense in one place.</p></div></details>
+  <details><summary>When can I download the app?</summary><div><p>Nirmand is launching soon on Android and iPhone. <a href="/download">Get early access</a> and we will tell you the day it is ready.</p></div></details>
+  <details><summary>Is Nirmand free?</summary><div><p>Yes. Creating your project, browsing, shortlisting, inviting your family and keeping records are free, within the Free-plan limits. You pay only for Bricks, which power AI previews, and, if you want the limits removed for a project, for Pro. Your first project comes with {{pricing.free.first_project_bricks}} free Bricks. See <a href="/pricing">pricing</a>.</p></div></details>
+  <details><summary>Who can I add to my project?</summary><div><p>Family members, your architect and your contractor. On the Free plan a project can have up to {{pricing.free.family}} family members, and up to {{pricing.pro.family}} with Pro. Contractors and architects are not counted in that limit.</p></div></details>
+</div>
+
+<h2>AI previews</h2>
+<div class="faq">
+  <details><summary>How does an AI preview work?</summary><div><p>Take or choose a photo of your room, pick a product such as a tile, laminate or paint, and Nirmand shows that product on your own wall, floor or ceiling. It usually takes 20 to 40 seconds and uses 1 Brick.</p></div></details>
+  <details><summary>How accurate are AI previews?</summary><div><p>They are a strong guide, not a photograph. Colour, texture, size and lighting can look different in real life, so always see a real sample before you buy. Read our <a href="/ai-content-policy">AI content policy</a>.</p></div></details>
+  <details><summary>What is a Final Look?</summary><div><p>A Final Look combines several of your approved previews into one image of the finished room. It uses <!--each pricing.final_look as t-->{{t.bricks}} Bricks at {{t.label}}, <!--/each t-->depending on the size you choose.</p></div></details>
+  <details><summary>What if a preview fails?</summary><div><p>The Brick comes back to you automatically. You do not need to ask.</p></div></details>
+  <details><summary>Are my room photos private?</summary><div><p>Your photos are visible only to you and the project members you allow. To create a preview, the photo is sent to our AI provider without your name, phone number or email. We never sell your data. See our <a href="/privacy">privacy policy</a>.</p></div></details>
+</div>
+
+<h2>Bricks and Pro</h2>
+<div class="faq">
+  <details><summary>What is a Brick?</summary><div><p>A Brick is a credit for AI features: 1 Brick makes one AI preview. Packs start at {{pricing.from_fmt}} for {{pricing.packs.0.bricks}} Bricks.</p></div></details>
+  <details><summary>Do Bricks expire?</summary><div><p>No. Bricks stay in your project for as long as your account is open.</p></div></details>
+  <details><summary>Can I use my Bricks in another project?</summary><div><p>No. Bricks belong to the project you buy them for. You can buy a pack as a gift for a family member in the same project.</p></div></details>
+  <details><summary>What does Pro include?</summary><div><p>Pro removes the Free-plan limits for one project for {{pricing.pro.days}} days: unlimited documents, bills, payments, expenses, work issues and Family Voice groups, up to {{pricing.pro.family}} family members, downloads and sharing, and {{pricing.pro.bonus_bricks}} bonus Bricks. While a project of yours has Pro, you can also create more projects. Pro costs {{pricing.pro.price_fmt}} per project.</p></div></details>
+  <details><summary>Does Pro renew automatically?</summary><div><p>No. Nothing renews or charges you automatically. If you renew early, the new {{pricing.pro.days}} days are added to what is left.</p></div></details>
+  <details><summary>What happens when Pro ends?</summary><div><p>The project goes back to the Free limits. Nothing is deleted; you just cannot add more beyond the Free limits until you renew.</p></div></details>
+</div>
+
+<h2>Payments and refunds</h2>
+<div class="faq">
+  <details><summary>How do I pay?</summary><div><p>Choose the project, pick a Bricks pack or Pro, sign in with your Google account and pay with Razorpay using UPI, a card, net banking or a wallet. What you buy is added to the project as soon as the payment is confirmed.</p></div></details>
+  <details><summary>Are taxes included in the price?</summary><div><p>{{pricing.tax_line}}</p></div></details>
+  <details><summary>I paid, but I can't see my Bricks or Pro.</summary><div><p>Banks sometimes confirm a payment a few minutes late, and our system adds your purchase as soon as it is confirmed. If it is not there after 30 minutes, write to <a href="mailto:{{emails.support}}">{{emails.support}}</a> with your mobile number and the Razorpay payment ID.</p></div></details>
+  <details><summary>Can I get a refund?</summary><div><p>Purchases are final once they are added to your project. You get a full refund if a payment failed but money was taken, if you were charged twice, or if what you bought was not added to your project. Read the <a href="/refund-policy">refund policy</a>.</p></div></details>
+</div>
+
+<h2>Your account and data</h2>
+<div class="faq">
+  <details><summary>Who can see my project?</summary><div><p>Only you and the people you invite. Members can see the project's shared information; some records, such as the payments you record with your contractors, are visible only to you.</p></div></details>
+  <details><summary>How do I delete my account?</summary><div><p>Follow the steps on <a href="/delete-account">Delete account &amp; data</a>. We delete your account within 30 days.</p></div></details>
+  <details><summary>I am a brand, shop or professional. How do I work with Nirmand?</summary><div><p>Write to <a href="mailto:{{emails.support}}">{{emails.support}}</a> with your business name and city.</p></div></details>
+</div>
+
+<h2>Still need help?</h2>
+<p>Write to <a href="mailto:{{emails.support}}">{{emails.support}}</a><!--if company.whatsapp_chat-->, message us on <a href="{{company.whatsapp_chat}}" rel="noopener">WhatsApp</a><!--/if company.whatsapp_chat--><!--if company.phone--> or call <a href="{{company.phone_tel}}">{{company.phone}}</a><!--/if company.phone-->. We are available {{company.hours}}.</p>

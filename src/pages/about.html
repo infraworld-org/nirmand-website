@@ -1,0 +1,53 @@
+<!--page
+{
+  "slug": "about",
+  "title": "About Nirmand",
+  "heading": "One app for building your home, together.",
+  "eyebrow": "About Nirmand",
+  "description": "Nirmand India Private Limited makes Nirmand, the app where your family, architect and contractor plan, preview and build your home together. Company details, what we do and what we sell.",
+  "intro": "Building a home is the biggest decision most families make, and it is made across a hundred small choices, shop visits and WhatsApp groups. Nirmand brings those choices into one place, so the whole family can see them, discuss them and decide."
+}
+-->
+<h2>What Nirmand does</h2>
+<ul>
+  <li><b>Plan by space and surface.</b> Create your project, add its rooms and work through every floor, wall and ceiling one surface at a time.</li>
+  <li><b>Browse real products.</b> {{catalogue.products}} products from {{catalogue.brands}} brands (as of {{catalogue.as_of}}), shown like reels so choosing feels easy.</li>
+  <li><b>See it before you build it.</b> AI previews show a product on a photo of your own room.</li>
+  <li><b>Decide together.</b> Ask your family with Family Voice, and bring your architect and contractor into the same project.</li>
+  <li><b>Keep every record.</b> Selections, bills, payments, site materials and daily expenses, organised by project.</li>
+</ul>
+
+<h2>What we sell</h2>
+<p>Nirmand sells only digital services, through the app and our website:</p>
+<ul>
+  <li><b>Bricks</b>, credits for AI previews, from {{pricing.from_fmt}};</li>
+  <li><b>Pro</b>, which removes the Free-plan limits for one project for {{pricing.pro.days}} days, for {{pricing.pro.price_fmt}}.</li>
+</ul>
+<p>Planning, browsing, shortlisting and keeping records are free. We do not sell or deliver building materials; shops and brands sell their products directly. See <a href="/pricing">pricing</a>.</p>
+
+<h2>What we believe</h2>
+<ul>
+  <li><b>Shortlist first, never cart first.</b> Good homes are decided slowly and together, not bought in a rush.</li>
+  <li><b>Honest numbers.</b> Clear prices, no hidden charges, no auto-renewals.</li>
+  <li><b>Your home, your data.</b> We do not sell personal data and we do not run ads.</li>
+  <li><b>Built for Indian homes.</b> Made in Indore, for families building across India.</li>
+</ul>
+
+<h2>Nirmand News</h2>
+<p>Nirmand India Private Limited also runs <a href="/news-policy">Nirmand News</a>: short Hindi news about development in your city, starting with Indore.</p>
+
+<h2>Company details</h2>
+<div class="facts">
+  <div class="fact"><p class="k">Legal name</p><p class="v">{{company.legal_name}}</p></div>
+  <!--if company.cin--><div class="fact"><p class="k">CIN</p><p class="v">{{company.cin}}</p></div><!--/if company.cin-->
+  <!--if company.incorporated_human--><div class="fact"><p class="k">Incorporated</p><p class="v">{{company.incorporated_human}}</p><p class="s">Under the Companies Act, 2013</p></div><!--/if company.incorporated_human-->
+  <!--if company.office_full--><div class="fact"><p class="k">Registered office</p><p class="v">{{company.office_full}}</p></div><!--/if company.office_full-->
+  <!--if !company.office_full--><div class="fact"><p class="k">Based in</p><p class="v">{{company.location}}</p></div><!--/if !company.office_full-->
+  <!--if company.gstin--><div class="fact"><p class="k">GSTIN</p><p class="v">{{company.gstin}}</p></div><!--/if company.gstin-->
+  <!--if company.founder_line--><div class="fact"><p class="k">Founder</p><p class="v">{{company.founder_line}}</p></div><!--/if company.founder_line-->
+  <div class="fact"><p class="k">Email</p><p class="v"><a href="mailto:{{emails.support}}">{{emails.support}}</a></p></div>
+  <!--if company.phone--><div class="fact"><p class="k">Phone</p><p class="v"><a href="{{company.phone_tel}}">{{company.phone}}</a></p><p class="s">{{company.hours}}</p></div><!--/if company.phone-->
+</div>
+
+<h2>Talk to us</h2>
+<p>Questions, partnerships or press: <a href="/contact">contact us</a>. Brands that want a listing corrected can write to <a href="mailto:{{emails.support}}">{{emails.support}}</a>.</p>

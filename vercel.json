@@ -1,0 +1,67 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "node scripts/build.mjs",
+  "outputDirectory": "public",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/company", "destination": "/about", "permanent": true },
+    { "source": "/company.html", "destination": "/about", "permanent": true },
+    { "source": "/about-us", "destination": "/about", "permanent": true },
+    { "source": "/contact-us", "destination": "/contact", "permanent": true },
+    { "source": "/privacy-policy", "destination": "/privacy", "permanent": true },
+    { "source": "/terms-of-use", "destination": "/terms", "permanent": true },
+    { "source": "/terms-and-conditions", "destination": "/terms", "permanent": true },
+    { "source": "/tos", "destination": "/terms", "permanent": true },
+    { "source": "/refunds", "destination": "/refund-policy", "permanent": true },
+    { "source": "/refund", "destination": "/refund-policy", "permanent": true },
+    { "source": "/cancellation", "destination": "/refund-policy", "permanent": true },
+    { "source": "/cancellation-and-refunds", "destination": "/refund-policy", "permanent": true },
+    { "source": "/shipping", "destination": "/delivery-policy", "permanent": true },
+    { "source": "/shipping-policy", "destination": "/delivery-policy", "permanent": true },
+    { "source": "/delivery", "destination": "/delivery-policy", "permanent": true },
+    { "source": "/account-deletion", "destination": "/delete-account", "permanent": true },
+    { "source": "/data-deletion", "destination": "/delete-account", "permanent": true },
+    { "source": "/delete", "destination": "/delete-account", "permanent": true },
+    { "source": "/grievance-redressal", "destination": "/grievance", "permanent": true },
+    { "source": "/support", "destination": "/help", "permanent": true },
+    { "source": "/faq", "destination": "/help", "permanent": true },
+    { "source": "/faqs", "destination": "/help", "permanent": true },
+    { "source": "/get-app", "destination": "/download", "permanent": true },
+    { "source": "/app", "destination": "/download", "permanent": true },
+    { "source": "/early-access", "destination": "/download", "permanent": true },
+    { "source": "/news", "destination": "/news-policy", "permanent": true },
+    { "source": "/ai-policy", "destination": "/ai-content-policy", "permanent": true },
+    { "source": "/guidelines", "destination": "/community-guidelines", "permanent": true },
+    { "source": "/mobile-preview", "destination": "/", "permanent": false }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Strict-Transport-Security", "value": "max-age=31536000" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=()" },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self'; connect-src 'self'; worker-src 'self' blob:; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
+        }
+      ]
+    },
+    {
+      "source": "/assets/fonts/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/assets/(img|app|real|brands|video|css)/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }]
+    },
+    {
+      "source": "/buy",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+<footer class="foot" data-tone="light">
+  <div class="ft-grid">
+    <div style="display:grid;gap:18px;align-content:start">
+      <a href="/" aria-label="Nirmand home page"><img src="/assets/img/logo-ink.png" alt="Nirmand · Your home, build together." width="188" height="40" loading="lazy" style="width:188px;height:auto"></a>
+      <div class="ft-legal">
+        <p><b>{{company.legal_name}}</b></p>
+        <!--if company.cin--><p>CIN: {{company.cin}}</p><!--/if company.cin-->
+        <!--if company.office_full--><p>Registered office: {{company.office_full}}</p><!--/if company.office_full-->
+        <!--if !company.office_full--><p>{{company.location}}</p><!--/if !company.office_full-->
+        <p>Email: <a href="mailto:{{emails.support}}">{{emails.support}}</a><!--if company.phone--> · Phone: <a href="{{company.phone_tel}}">{{company.phone}}</a><!--/if company.phone--></p>
+        <!--if company.gstin--><p>GSTIN: {{company.gstin}}</p><!--/if company.gstin-->
+        <p>Grievance Officer: <!--if grievance_officer.name-->{{grievance_officer.name}} · <!--/if grievance_officer.name--><a href="mailto:{{emails.grievance}}">{{emails.grievance}}</a></p>
+      </div>
+    </div>
+    <div><h3>Product</h3><ul>
+      <li><a href="/#preview" data-jump="preview">AI preview</a></li>
+      <li><a href="/#catalogue" data-jump="catalogue">Catalogue</a></li>
+      <li><a href="/#family" data-jump="family">Family &amp; experts</a></li>
+      <li><a href="/#selections" data-jump="selections">My Selections</a></li>
+      <li><a href="/#expenses" data-jump="expenses">Expenses</a></li>
+      <li><a href="/pricing">Pricing &amp; plans</a></li>
+      <li><a href="/download">Get the app</a></li>
+    </ul></div>
+    <div><h3>Company</h3><ul>
+      <li><a href="/about">About Nirmand</a></li>
+      <li><a href="/contact">Contact us</a></li>
+      <li><a href="/help">Help &amp; FAQs</a></li>
+      <li><a href="/news-policy">Nirmand News</a></li>
+      <!--if social.instagram--><li><a href="{{social.instagram}}" rel="noopener">Instagram</a></li><!--/if social.instagram-->
+      <!--if social.linkedin--><li><a href="{{social.linkedin}}" rel="noopener">LinkedIn</a></li><!--/if social.linkedin-->
+      <!--if social.youtube--><li><a href="{{social.youtube}}" rel="noopener">YouTube</a></li><!--/if social.youtube-->
+      <!--if social.x--><li><a href="{{social.x}}" rel="noopener">X</a></li><!--/if social.x-->
+      <!--if social.news_instagram_indore--><li><a href="{{social.news_instagram_indore}}" rel="noopener">Nirmand News Indore</a></li><!--/if social.news_instagram_indore-->
+    </ul></div>
+    <div><h3>Policies</h3><ul>
+      <li><a href="/privacy">Privacy policy</a></li>
+      <li><a href="/terms">Terms of use</a></li>
+      <li><a href="/refund-policy">Cancellation &amp; refunds</a></li>
+      <li><a href="/delivery-policy">Delivery policy</a></li>
+      <li><a href="/delete-account">Delete account &amp; data</a></li>
+      <li><a href="/grievance">Grievance redressal</a></li>
+      <li><a href="/ai-content-policy">AI content policy</a></li>
+      <li><a href="/community-guidelines">Community guidelines</a></li>
+    </ul></div>
+  </div>
+  <p class="ft-copy"><span>© {{build.year}} {{company.legal_name}}</span><span>Made in Indore · Payments secured by Razorpay</span></p>
+</footer>

@@ -1,0 +1,85 @@
+{
+  "_readme": "Public company facts used on every page. Fill an empty value and push: the build puts it in the footer, policies and contact pages. Leave a value empty until it is final; the build hides lines with empty values and lists them as MISSING. Never put a password, key or token in this file.",
+
+  "site": {
+    "name": "Nirmand",
+    "url": "https://nirmand.com",
+    "tagline": "Your home, build together.",
+    "policies_updated": "2026-10-13"
+  },
+
+  "company": {
+    "legal_name": "Nirmand India Private Limited",
+    "brand": "Nirmand",
+    "incorporated": "2026-10-07",
+    "cin": "",
+    "gstin": "",
+    "office": {
+      "line1": "",
+      "line2": "",
+      "city": "Indore",
+      "state": "Madhya Pradesh",
+      "pin": "",
+      "country": "India"
+    },
+    "phone": "",
+    "whatsapp": "",
+    "hours": "Monday to Saturday, 10:00 am to 6:00 pm IST",
+    "founder_name": "",
+    "founder_title": "Founder"
+  },
+
+  "emails": {
+    "support": "support@nirmand.com",
+    "grievance": "grievance@nirmand.com",
+    "privacy": "privacy@nirmand.com"
+  },
+
+  "grievance_officer": {
+    "name": "",
+    "designation": ""
+  },
+
+  "social": {
+    "instagram": "",
+    "linkedin": "",
+    "youtube": "",
+    "x": "",
+    "news_instagram_indore": "https://www.instagram.com/nirmandnews.indore/"
+  },
+
+  "app": {
+    "android_url": "",
+    "ios_url": "",
+    "early_access_message": "Hi Nirmand, I would like early access to the app. My city: ",
+    "delete_in_app": ""
+  },
+
+  "buy": {
+    "url": "https://nirmand.com/buy",
+    "checkout_url": ""
+  },
+
+  "data_location": "Some of our service providers store or process data outside India.",
+
+  "catalogue": {
+    "products": "9,000+",
+    "brands": "790+",
+    "as_of": "October 2026"
+  },
+
+  "pricing": {
+    "packs": [
+      { "id": "entry", "name": "Entry", "bricks": 60, "price": 999, "tag": "Starter" },
+      { "id": "serious", "name": "Serious", "bricks": 180, "price": 2499, "tag": "" },
+      { "id": "power", "name": "Power", "bricks": 400, "price": 4999, "tag": "Best value" }
+    ],
+    "pro": { "price": 2600, "days": 365, "bonus_bricks": 10, "family": 25 },
+    "free": { "projects": 1, "family": 5, "per_module": 15, "first_project_bricks": 5 },
+    "final_look": [
+      { "label": "1K", "desc": "Standard", "bricks": 2 },
+      { "label": "2K", "desc": "Best for zoom and details", "bricks": 3 },
+      { "label": "4K", "desc": "Best for professional prints", "bricks": 4 }
+    ]
+  }
+}

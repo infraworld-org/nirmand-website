@@ -1,0 +1,31 @@
+<!--page
+{
+  "slug": "contact",
+  "title": "Contact us",
+  "heading": "Contact us",
+  "eyebrow": "Company",
+  "description": "Contact Nirmand India Private Limited: support email, phone, WhatsApp, working hours, address, and where to send payment, privacy and grievance questions.",
+  "intro": "We are a small team in Indore and we read every message. Write to us, and we reply within one working day."
+}
+-->
+<div class="facts">
+  <div class="fact"><p class="k">Email</p><p class="v"><a href="mailto:{{emails.support}}">{{emails.support}}</a></p><p class="s">Help, payments and anything else</p></div>
+  <!--if company.phone--><div class="fact"><p class="k">Phone</p><p class="v"><a href="{{company.phone_tel}}">{{company.phone}}</a></p><p class="s">{{company.hours}}</p></div><!--/if company.phone-->
+  <!--if company.whatsapp_chat--><div class="fact"><p class="k">WhatsApp</p><p class="v"><a href="{{company.whatsapp_chat}}" rel="noopener">Chat with us</a></p><p class="s">{{company.hours}}</p></div><!--/if company.whatsapp_chat-->
+  <div class="fact"><p class="k">Working hours</p><p class="v">{{company.hours}}</p><p class="s">Closed on Sundays and public holidays</p></div>
+  <div class="fact"><p class="k"><!--if company.office_full-->Registered office<!--/if company.office_full--><!--if !company.office_full-->Based in<!--/if !company.office_full--></p><p class="v">{{company.legal_name}}</p><p class="s"><!--if company.office_full-->{{company.office_full}}<!--/if company.office_full--><!--if !company.office_full-->{{company.location}}<!--/if !company.office_full--></p></div>
+</div>
+
+<h2>Before you write</h2>
+<ul>
+  <li><b>How do I…?</b> Most answers are in <a href="/help">Help &amp; FAQs</a>.</li>
+  <li><b>A payment problem?</b> Include the mobile number on your Nirmand account and the Razorpay payment ID. See the <a href="/refund-policy">refund policy</a>.</li>
+  <li><b>Your personal data?</b> Write to <a href="mailto:{{emails.privacy}}">{{emails.privacy}}</a>, or read how to <a href="/delete-account">delete your account</a>.</li>
+  <li><b>A complaint?</b> Write to <a href="mailto:{{emails.grievance}}">{{emails.grievance}}</a>. See <a href="/grievance">Grievance redressal</a>.</li>
+</ul>
+
+<h2>Brands, shops and professionals</h2>
+<p>If you are a brand and want your listing corrected or removed, or you are a shop, architect or contractor who wants to work with Nirmand, write to <a href="mailto:{{emails.support}}">{{emails.support}}</a> with your business name and city.</p>
+
+<h2>Press</h2>
+<p>For interviews, quotes and images, write to <a href="mailto:{{emails.support}}?subject=Press">{{emails.support}}</a> with “Press” in the subject.</p>

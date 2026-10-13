@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{page.title}} · Nirmand</title>
+<meta name="description" content="{{page.description}}">
+<meta name="robots" content="{{page.robots}}">
+<!--if page.canonical--><link rel="canonical" href="{{page.canonical}}">
+<meta property="og:url" content="{{page.canonical}}"><!--/if page.canonical-->
+<meta name="theme-color" content="#0C1429">
+<link rel="icon" href="/assets/img/favicon.png" type="image/png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Nirmand">
+<meta property="og:locale" content="en_IN">
+<meta property="og:title" content="{{page.title}} · Nirmand">
+<meta property="og:description" content="{{page.description}}">
+<meta property="og:image" content="https://nirmand.com/assets/img/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="/assets/fonts/manrope-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/instrument-serif-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/fonts.css">
+<link rel="stylesheet" href="/assets/css/page.css">
+<!--if page.redirect--><script>try{location.replace({{{page.redirect}}}+location.search)}catch(e){}</script><!--/if page.redirect-->
+<!--if page.jsonld--><script type="application/ld+json">{{{page.jsonld}}}</script><!--/if page.jsonld-->
+</head>
+<body class="{{page.body_class}}">
+<a class="skip" href="#content">Skip to content</a>
+<header class="hdr">
+  <a class="hdr-logo" href="/" aria-label="Nirmand home page"><img src="/assets/img/logo-light.png" alt="Nirmand" width="141" height="30"></a>
+  <nav class="hdr-nav" aria-label="Site">
+    <a class="hide-s" href="/">The app</a>
+    <a class="hide-s" href="/pricing">Pricing</a>
+    <a class="hide-s" href="/help">Help</a>
+    <a class="hide-s" href="/about">About</a>
+    <a class="hdr-cta" href="/download">Early access</a>
+    <details class="mnav">
+      <summary aria-label="Open menu">Menu</summary>
+      <div class="mnav-list">
+        <a href="/">The app</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/help">Help &amp; FAQs</a>
+        <a href="/about">About Nirmand</a>
+        <a href="/contact">Contact us</a>
+      </div>
+    </details>
+  </nav>
+</header>
+<main id="content">
+  <div class="pg-hero">
+    <div class="pg-hero-in">
+      <p class="eyebrow">{{page.eyebrow}}</p>
+      <h1>{{page.heading}}</h1>
+      <!--if page.intro--><p class="lede">{{{page.intro}}}</p><!--/if page.intro-->
+      <!--if page.updated_human--><p class="updated">Last updated: {{page.updated_human}}</p><!--/if page.updated_human-->
+    </div>
+  </div>
+  <div class="pg-body">
+    <!--if page.toc-->{{{page.toc}}}
+    <script>try{if(matchMedia('(max-width:900px)').matches)document.querySelector('.toc').removeAttribute('open')}catch(e){}</script><!--/if page.toc-->
+    <article class="prose">
+{{{page.body}}}
+    </article>
+  </div>
+</main>
+<!--include footer-->
+</body>
+</html>

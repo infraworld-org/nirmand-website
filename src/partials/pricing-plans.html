@@ -1,0 +1,64 @@
+    <div class="pr-block" id="bricks">
+      <div class="pr-head">
+        <div class="pr-ic"><svg class="brick" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="19.6" rx="9.2" ry="1.3" fill="#000" opacity=".25"/><polygon points="3,8.2 12,11.8 12,18.4 1.5,12.2" fill="#C9980A"/><polygon points="21,8.2 22.5,12.2 12,18.4 12,11.8" fill="#A77C05"/><polygon points="12,4.6 21,8.2 12,11.8 3,8.2" fill="#FDC402"/><polygon points="12,5.5 15.4,6.86 8.6,9.58 5.2,8.22" fill="#fff" opacity=".45"/></svg></div>
+        <div><h3>Bricks <span>for AI previews</span></h3><p>1 Brick = 1 AI preview of a product on a photo of your own room. A Final Look, which puts several approved products into one image, uses <!--each pricing.final_look as t-->{{t.bricks}} Bricks at {{t.label}}, <!--/each t-->by size. Bricks are bought for one project, never expire, and a pack can be gifted to a family member in that project.</p></div>
+      </div>
+      <div class="pk-grid">
+<!--each pricing.packs as k-->        <div class="pk<!--if k.best--> pk-best<!--/if k.best-->">
+          <div class="pk-top"><span class="pk-name">{{k.name}}</span><!--if k.tag_line--><span class="pk-tag<!--if k.best--> best<!--/if k.best--><!--if k.starter--> starter<!--/if k.starter-->">{{k.tag_line}}</span><!--/if k.tag_line--></div>
+          <div class="pk-n"><svg class="brick" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="19.6" rx="9.2" ry="1.3" fill="#000" opacity=".25"/><polygon points="3,8.2 12,11.8 12,18.4 1.5,12.2" fill="#C9980A"/><polygon points="21,8.2 22.5,12.2 12,18.4 12,11.8" fill="#A77C05"/><polygon points="12,4.6 21,8.2 12,11.8 3,8.2" fill="#FDC402"/><polygon points="12,5.5 15.4,6.86 8.6,9.58 5.2,8.22" fill="#fff" opacity=".45"/></svg><b>{{k.bricks}}</b><span>Bricks</span></div>
+          <div class="pk-price">{{k.price_fmt}}</div>
+          <p class="pk-per">{{k.per_brick}} per Brick</p>
+          <a class="pk-buy" href="/buy">Buy {{k.name}}<span class="sr"> pack of {{k.bricks}} Bricks</span></a>
+        </div>
+<!--/each k-->      </div>
+      <ul class="pr-notes">
+        <li>{{pricing.free.first_project_bricks}} free Bricks on your first project</li>
+        <li>A failed preview returns its Brick automatically</li>
+        <li>Bricks never expire</li>
+        <li>Savings are against the Entry pack's price per Brick</li>
+      </ul>
+    </div>
+
+    <div class="pr-block" id="pro">
+      <div class="pr-head">
+        <div class="pr-ic pr-ic-pro"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8L3.5 9.2l5.9-.9z" fill="currentColor"/></svg></div>
+        <div><h3>Pro <span>for one project</span></h3><p>One project, {{pricing.pro.days}} days, no Free-plan limits. Pay once; renew only if you want to.</p></div>
+      </div>
+      <div class="pro-grid">
+        <div class="pro-card">
+          <div class="pro-price">{{pricing.pro.price_fmt}}<small>per project · {{pricing.pro.days}} days</small></div>
+          <ul class="pro-list">
+            <li>Everything in Free, without the limits</li>
+            <li>Unlimited documents, bills, receipts, expenses and work issues</li>
+            <li>Up to {{pricing.pro.family}} family members, unlimited Family Voice groups</li>
+            <li>Download and share everything you create</li>
+            <li>Create more projects while Pro is active</li>
+            <li><b>+{{pricing.pro.bonus_bricks}} Bricks</b> with every Pro payment</li>
+          </ul>
+          <a class="pro-buy" href="/buy">Get Pro for a project</a>
+          <p class="pro-fine">No auto-renewal. Renew early and the new {{pricing.pro.days}} days are added to what is left. When Pro ends, nothing is deleted; the project goes back to the Free limits. Purchases are final, except for failed or duplicate payments: see the <a href="/refund-policy">refund policy</a>.</p>
+        </div>
+        <div class="cmp-wrap"><div class="seg" id="planSeg" role="group" aria-label="Show plan"><button type="button" data-v="free" aria-pressed="false">Free</button><button type="button" class="on" data-v="pro" aria-pressed="true">Pro</button></div>
+        <div class="cmp-table" id="cmpTable" data-view="pro">
+          <div class="cmp-row cmp-head"><div class="cmp-l"></div><div class="cmp-f">Free</div><div class="cmp-p"><span>Pro</span></div></div>
+          <div class="cmp-row"><div class="cmp-l">Projects</div><div class="cmp-f"><span class="ftag">{{pricing.free.projects}}</span></div><div class="cmp-p"><i></i>Create more projects while Pro is active on any of them</div></div>
+          <div class="cmp-row"><div class="cmp-l">Family members</div><div class="cmp-f"><span class="ftag">Up to {{pricing.free.family}}</span></div><div class="cmp-p"><i></i>Up to {{pricing.pro.family}} family members. Contractors and architects are never counted</div></div>
+          <div class="cmp-row"><div class="cmp-l">Family Voice groups</div><div class="cmp-f"><span class="ftag">Up to {{pricing.free.per_module}}</span></div><div class="cmp-p"><i></i>Unlimited Family Voice groups with your family, contractors and architects</div></div>
+          <div class="cmp-row"><div class="cmp-l">Documents</div><div class="cmp-f"><span class="ftag">{{pricing.free.per_module}} per category</span></div><div class="cmp-p"><i></i>Upload and organise unlimited documents</div></div>
+          <div class="cmp-row"><div class="cmp-l">Shop quotations</div><div class="cmp-f"><span class="ftag">Up to {{pricing.free.per_module}}</span></div><div class="cmp-p"><i></i>Unlimited shop quotations to compare before you buy</div></div>
+          <div class="cmp-row"><div class="cmp-l">Material bills &amp; challans</div><div class="cmp-f"><span class="ftag">Up to {{pricing.free.per_module}}</span></div><div class="cmp-p"><i></i>Unlimited bills, delivery challans and photos when material reaches the site</div></div>
+          <div class="cmp-row"><div class="cmp-l">Shop payment receipts</div><div class="cmp-f"><span class="ftag">Up to {{pricing.free.per_module}}</span></div><div class="cmp-p"><i></i>Unlimited shop payment receipts for clear accounts</div></div>
+          <div class="cmp-row"><div class="cmp-l">Contractor &amp; architect accounts</div><div class="cmp-f"><span class="ftag">Up to {{pricing.free.per_module}}</span></div><div class="cmp-p"><i></i>Unlimited contractor and architect bills and payment receipts</div></div>
+          <div class="cmp-row"><div class="cmp-l">Work issues</div><div class="cmp-f"><span class="ftag">Up to {{pricing.free.per_module}}</span></div><div class="cmp-p"><i></i>Record and follow up unlimited work issues with contractors and architects</div></div>
+          <div class="cmp-row"><div class="cmp-l">Daily expenses</div><div class="cmp-f"><span class="ftag">Up to {{pricing.free.per_module}}</span></div><div class="cmp-p"><i></i>Unlimited day-to-day expenses, organised</div></div>
+          <div class="cmp-row"><div class="cmp-l">Downloads &amp; sharing</div><div class="cmp-f"><span class="ftag lock">Locked</span></div><div class="cmp-p"><i></i>Download and share everything you create</div></div>
+          <div class="cmp-row"><div class="cmp-l">Bonus Bricks</div><div class="cmp-f"><span class="ftag">—</span></div><div class="cmp-p"><i></i>+{{pricing.pro.bonus_bricks}} Bricks with every Pro payment</div></div>
+        </div>
+        <p class="cmp-note">Free limits are per project. Everything you add stays when a limit is reached or Pro ends.</p></div>
+      </div>
+    </div>
+    <p class="pr-tax">{{pricing.tax_line}} Payments are processed securely by Razorpay: UPI, cards, net banking and wallets.</p>
+    <script>
+    (function(){var s=document.getElementById('planSeg');if(!s)return;s.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;s.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')})})})();
+    </script>
