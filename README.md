@@ -8,7 +8,7 @@ Hosted on Vercel. Every push to `main` builds and deploys automatically.
 ## How it is built
 
 ```
-site.config.json      company facts and prices: CIN, address, phone, emails, packs, Pro
+site.config.json      company facts and prices: CIN, address, email, phone, packs, Pro
 src/index.html        the homepage film (hand-built, uses the shared footer and pricing)
 src/pricing.html      the pricing page
 src/layout.html       the shell for every content page (header, title band, footer)
@@ -24,9 +24,11 @@ vercel.json           build settings, clean URLs, redirects, security headers
 
 ## Everyday changes
 
-**A company fact (CIN, address, phone, grievance officer, WhatsApp number):** fill the value
-in `site.config.json` and push. Lines with an empty value stay hidden, so the site never shows
-"to be added". The build prints which facts are still missing.
+**A company fact (CIN, address, email, phone, WhatsApp number):** change the value in
+`site.config.json` and push. Every page uses the one email address in `company.email`. Lines
+with an empty value stay hidden, so the site never shows "to be added". The build prints which
+required facts are still missing. A WhatsApp number is optional: when it is filled, the early
+access buttons and the help, contact and refund pages also offer WhatsApp.
 
 **A price or pack:** change `pricing` in `site.config.json`. The homepage, the pricing page,
 help and the policies all read from there. Keep it the same as the app's `app_config`.

@@ -4,14 +4,13 @@
   "title": "Grievance redressal",
   "eyebrow": "Policies",
   "updated": "policies",
-  "description": "How to raise a complaint with Nirmand, who our Grievance Officer is, and how quickly we respond: acknowledgement within 24 hours, resolution within 7 days.",
-  "intro": "If something in the Nirmand app, on nirmand.com or in Nirmand News is wrong, unfair or harmful, tell us. Every complaint gets a reference number and a named person responsible for it."
+  "description": "How to raise a complaint with Nirmand, where to send it, and how quickly we respond: acknowledgement within 24 hours, resolution within 7 days.",
+  "intro": "If something in the Nirmand app, on nirmand.com or in Nirmand News is wrong, unfair or harmful, tell us. Every complaint gets a reference number and a written answer."
 }
 -->
-<h2>Our Grievance Officer</h2>
+<h2>Where to send a complaint</h2>
 <div class="facts">
-  <!--if grievance_officer.name--><div class="fact"><p class="k">Name</p><p class="v">{{grievance_officer.name}}</p><!--if grievance_officer.designation--><p class="s">{{grievance_officer.designation}}, {{company.legal_name}}</p><!--/if grievance_officer.designation--></div><!--/if grievance_officer.name-->
-  <div class="fact"><p class="k">Email</p><p class="v"><a href="mailto:{{emails.grievance}}">{{emails.grievance}}</a></p></div>
+  <div class="fact"><p class="k">Email</p><p class="v"><a href="mailto:{{company.email}}?subject=Grievance">{{company.email}}</a></p><p class="s">Use the subject “Grievance”</p></div>
   <!--if company.phone--><div class="fact"><p class="k">Phone</p><p class="v"><a href="{{company.phone_tel}}">{{company.phone}}</a></p><p class="s">{{company.hours}}</p></div><!--/if company.phone-->
   <div class="fact"><p class="k">Address</p><p class="v">{{company.legal_name}}</p><p class="s"><!--if company.office_full-->{{company.office_full}}<!--/if company.office_full--><!--if !company.office_full-->{{company.location}}<!--/if !company.office_full--></p></div>
 </div>
@@ -27,14 +26,14 @@
 
 <h2>How to raise a complaint</h2>
 <ol class="steps">
-  <li><b>Write to</b> <a href="mailto:{{emails.grievance}}">{{emails.grievance}}</a> with the subject “Grievance”.</li>
+  <li><b>Write to</b> <a href="mailto:{{company.email}}?subject=Grievance">{{company.email}}</a> with the subject “Grievance”.</li>
   <li><b>Tell us</b> your name, the mobile number or email on your Nirmand account (if you have one), what happened and when, and what you would like us to do. Add screenshots, links or payment IDs if you have them.</li>
   <li><b>Within 24 hours</b> we acknowledge your complaint and send you a reference number.</li>
   <li><b>Within 7 days</b> we resolve it and tell you what we did and why. If we need more time for a complex case, we tell you why and when to expect an answer.</li>
 </ol>
 
 <h2>Urgent removal of content</h2>
-<p>If content on Nirmand shows you in a sexual act or with nudity, or impersonates you, including in a morphed or AI-made image, write to <a href="mailto:{{emails.grievance}}">{{emails.grievance}}</a> with the subject “Urgent removal”. We act within 24 hours.</p>
+<p>If content on Nirmand shows you in a sexual act or with nudity, or impersonates you, including in a morphed or AI-made image, write to <a href="mailto:{{company.email}}?subject=Urgent%20removal">{{company.email}}</a> with the subject “Urgent removal”. We act within 24 hours.</p>
 
 <h2>If you are not satisfied</h2>
 <p>If you are not happy with our answer, reply to the same email thread and ask for the decision to be reviewed by the management of Nirmand India Private Limited. You can also:</p>
@@ -43,5 +42,5 @@
   <li>for personal data complaints, approach the Data Protection Board of India after you have raised the complaint with us.</li>
 </ul>
 
-<h2>Other ways to reach us</h2>
-<p>For everyday questions, such as how to use the app, our support team is quicker: <a href="mailto:{{emails.support}}">{{emails.support}}</a><!--if company.whatsapp_chat--> or <a href="{{company.whatsapp_chat}}" rel="noopener">WhatsApp</a><!--/if company.whatsapp_chat-->. See also <a href="/contact">Contact us</a> and <a href="/help">Help &amp; FAQs</a>.</p>
+<h2>Everyday questions</h2>
+<p>For questions such as how to use the app, <a href="/help">Help &amp; FAQs</a> is the quickest place to look<!--if company.whatsapp_chat-->, or message us on <a href="{{company.whatsapp_chat}}" rel="noopener">WhatsApp</a><!--/if company.whatsapp_chat-->. See also <a href="/contact">Contact us</a>.</p>

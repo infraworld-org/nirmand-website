@@ -43,11 +43,9 @@
   <!--if company.incorporated_human--><div class="fact"><p class="k">Incorporated</p><p class="v">{{company.incorporated_human}}</p><p class="s">Under the Companies Act, 2013</p></div><!--/if company.incorporated_human-->
   <!--if company.office_full--><div class="fact"><p class="k">Registered office</p><p class="v">{{company.office_full}}</p></div><!--/if company.office_full-->
   <!--if !company.office_full--><div class="fact"><p class="k">Based in</p><p class="v">{{company.location}}</p></div><!--/if !company.office_full-->
-  <!--if company.gstin--><div class="fact"><p class="k">GSTIN</p><p class="v">{{company.gstin}}</p></div><!--/if company.gstin-->
-  <!--if company.founder_line--><div class="fact"><p class="k">Founder</p><p class="v">{{company.founder_line}}</p></div><!--/if company.founder_line-->
-  <div class="fact"><p class="k">Email</p><p class="v"><a href="mailto:{{emails.support}}">{{emails.support}}</a></p></div>
+  <div class="fact"><p class="k">Email</p><p class="v"><a href="mailto:{{company.email}}">{{company.email}}</a></p></div>
   <!--if company.phone--><div class="fact"><p class="k">Phone</p><p class="v"><a href="{{company.phone_tel}}">{{company.phone}}</a></p><p class="s">{{company.hours}}</p></div><!--/if company.phone-->
 </div>
 
 <h2>Talk to us</h2>
-<p>Questions, partnerships or press: <a href="/contact">contact us</a>. Brands that want a listing corrected can write to <a href="mailto:{{emails.support}}">{{emails.support}}</a>.</p>
+<p>Questions, partnerships or press: <a href="/contact">contact us</a>. Brands that want a listing corrected can write to <a href="mailto:{{company.email}}">{{company.email}}</a>.</p>

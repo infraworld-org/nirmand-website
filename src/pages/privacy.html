@@ -15,7 +15,7 @@
     <li>Room photos go to our AI providers only to create the previews you ask for, never with your name, phone number or email.</li>
     <li>People you invite to a project can see that project's shared information.</li>
     <li>We do not sell your personal data and we do not show ads.</li>
-    <li>You can ask to see, correct or delete your data, or withdraw your consent, at any time by writing to <a href="mailto:{{emails.privacy}}">{{emails.privacy}}</a>.</li>
+    <li>You can ask to see, correct or delete your data, or withdraw your consent, at any time by writing to <a href="mailto:{{company.email}}?subject=Privacy">{{company.email}}</a>.</li>
   </ul>
 </div>
 
@@ -105,7 +105,7 @@
 </table></div>
 <h3>Professionals and shops</h3>
 <p>When you tap Call or WhatsApp for a shop, contractor or architect, the app opens your phone's dialer or WhatsApp; we do not send them your data.</p>
-<p>The business details of professionals and shops that users add, such as their name, business name, phone number and city, may be used by Nirmand to invite them to Nirmand and to build our network of professionals and shops. We never share your project, budget, payments or documents with them unless you invite them to your project. A professional or shop that does not want to hear from us can write to <a href="mailto:{{emails.privacy}}">{{emails.privacy}}</a> and we will stop.</p>
+<p>The business details of professionals and shops that users add, such as their name, business name, phone number and city, may be used by Nirmand to invite them to Nirmand and to build our network of professionals and shops. We never share your project, budget, payments or documents with them unless you invite them to your project. A professional or shop that does not want to hear from us can write to <a href="mailto:{{company.email}}?subject=Privacy">{{company.email}}</a> and we will stop.</p>
 <h3>When the law requires it</h3>
 <p>We may share personal data with government authorities, courts or law enforcement when the law requires it, or to protect the rights, safety and property of our users and Nirmand.</p>
 <h3>If our business changes hands</h3>
@@ -146,7 +146,7 @@
   <li>nominate a person to use these rights for you if you die or are unable to;</li>
   <li>raise a grievance with us and, if you are not satisfied, with the Data Protection Board of India.</li>
 </ul>
-<p>To use any of these rights, write to <a href="mailto:{{emails.privacy}}">{{emails.privacy}}</a> from the email address on your account, or mention the mobile number on your account. We may ask you to confirm it is you. We acknowledge every request within 24 hours and resolve it within 7 days where we can; deleting a whole account can take up to 30 days.</p>
+<p>To use any of these rights, write to <a href="mailto:{{company.email}}?subject=Privacy">{{company.email}}</a> with the subject “Privacy”, from the email address on your account, or mention the mobile number on your account. We may ask you to confirm it is you. We acknowledge every request within 24 hours and resolve it within 7 days where we can; deleting a whole account can take up to 30 days.</p>
 <p>You can also withdraw consent yourself: turn off location or notifications in your phone's settings, reply STOP to our WhatsApp messages, or delete photos and projects in the app.</p>
 
 <h2>Children</h2>
@@ -168,8 +168,8 @@
 
 <h2>Contact us</h2>
 <div class="facts">
-  <div class="fact"><p class="k">Privacy questions</p><p class="v"><a href="mailto:{{emails.privacy}}">{{emails.privacy}}</a></p></div>
-  <div class="fact"><p class="k">Grievance Officer</p><p class="v"><!--if grievance_officer.name-->{{grievance_officer.name}}<!--/if grievance_officer.name--><!--if !grievance_officer.name--><a href="mailto:{{emails.grievance}}">{{emails.grievance}}</a><!--/if !grievance_officer.name--></p><!--if grievance_officer.name--><p class="s"><!--if grievance_officer.designation-->{{grievance_officer.designation}} · <!--/if grievance_officer.designation--><a href="mailto:{{emails.grievance}}">{{emails.grievance}}</a></p><!--/if grievance_officer.name--></div>
+  <div class="fact"><p class="k">Email</p><p class="v"><a href="mailto:{{company.email}}?subject=Privacy">{{company.email}}</a></p><p class="s">Use the subject “Privacy”</p></div>
+  <!--if company.phone--><div class="fact"><p class="k">Phone</p><p class="v"><a href="{{company.phone_tel}}">{{company.phone}}</a></p><p class="s">{{company.hours}}</p></div><!--/if company.phone-->
   <div class="fact"><p class="k">Write to us</p><p class="v">{{company.legal_name}}</p><p class="s"><!--if company.office_full-->{{company.office_full}}<!--/if company.office_full--><!--if !company.office_full-->{{company.location}}<!--/if !company.office_full--></p></div>
 </div>
 <p>More on how complaints are handled: <a href="/grievance">Grievance redressal</a>.</p>

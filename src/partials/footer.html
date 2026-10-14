@@ -7,9 +7,8 @@
         <!--if company.cin--><p>CIN: {{company.cin}}</p><!--/if company.cin-->
         <!--if company.office_full--><p>Registered office: {{company.office_full}}</p><!--/if company.office_full-->
         <!--if !company.office_full--><p>{{company.location}}</p><!--/if !company.office_full-->
-        <p>Email: <a href="mailto:{{emails.support}}">{{emails.support}}</a><!--if company.phone--> · Phone: <a href="{{company.phone_tel}}">{{company.phone}}</a><!--/if company.phone--></p>
-        <!--if company.gstin--><p>GSTIN: {{company.gstin}}</p><!--/if company.gstin-->
-        <p>Grievance Officer: <!--if grievance_officer.name-->{{grievance_officer.name}} · <!--/if grievance_officer.name--><a href="mailto:{{emails.grievance}}">{{emails.grievance}}</a></p>
+        <p>Email: <a href="mailto:{{company.email}}">{{company.email}}</a></p>
+        <!--if company.phone--><p>Phone: <a href="{{company.phone_tel}}" style="white-space:nowrap">{{company.phone}}</a></p><!--/if company.phone-->
       </div>
     </div>
     <div><h3>Product</h3><ul>

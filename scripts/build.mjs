@@ -68,7 +68,6 @@ function buildContext() {
       starter: i === 0 ? 'yes' : '',
     };
   });
-  const gst = (c.gstin || '').trim();
   return {
     site: { ...cfg.site, policies_updated_human: human(cfg.site.policies_updated) },
     company: {
@@ -79,10 +78,7 @@ function buildContext() {
       whatsapp_link: wa ? `https://wa.me/${wa}?text=${waText}` : '',
       whatsapp_chat: wa ? `https://wa.me/${wa}` : '',
       incorporated_human: c.incorporated ? human(c.incorporated) : '',
-      founder_line: c.founder_name ? `${c.founder_name}, ${c.founder_title || 'Founder'}` : '',
     },
-    emails: cfg.emails,
-    grievance_officer: cfg.grievance_officer,
     social: cfg.social,
     app: cfg.app,
     buy: cfg.buy,
@@ -99,10 +95,7 @@ function buildContext() {
       pro: { ...p.pro, price_fmt: inr(p.pro.price) },
       free: p.free,
       final_look: p.final_look,
-      tax_line: gst
-        ? 'All prices include GST. Nothing more is added at checkout.'
-        : 'Prices shown are the final amount you pay. Nothing more is added at checkout.',
-      gstin: gst,
+      price_note: 'Prices shown are the final amount you pay. Nothing more is added at checkout.',
     },
     build: { date: iso(today), year: String(today.getUTCFullYear()) },
     org_jsonld: orgJsonLd(c, o, officeComplete),
@@ -112,7 +105,7 @@ function buildContext() {
 function orgJsonLd(c, o, officeComplete) {
   const site = cfg.site.url;
   const sameAs = Object.values(cfg.social).filter((v) => typeof v === 'string' && /^https?:\/\//.test(v));
-  const support = { '@type': 'ContactPoint', contactType: 'customer support', email: cfg.emails.support, areaServed: 'IN', availableLanguage: ['en', 'hi'] };
+  const support = { '@type': 'ContactPoint', contactType: 'customer support', email: c.email, areaServed: 'IN', availableLanguage: ['en', 'hi'] };
   if (c.phone) support.telephone = c.phone;
   const address = { '@type': 'PostalAddress', addressLocality: o.city, addressRegion: o.state, addressCountry: 'IN' };
   if (officeComplete) {
@@ -127,14 +120,13 @@ function orgJsonLd(c, o, officeComplete) {
     alternateName: ['Nirmaan', 'Nirman'],
     url: `${site}/`,
     logo: `${site}/assets/img/logo-ink.png`,
-    email: cfg.emails.support,
+    email: c.email,
     foundingDate: c.incorporated,
     address,
     contactPoint: [support],
   };
   if (c.phone) org.telephone = c.phone;
   if (c.cin) org.identifier = { '@type': 'PropertyValue', propertyID: 'CIN', value: c.cin };
-  if (c.founder_name) org.founder = { '@type': 'Person', name: c.founder_name };
   if (sameAs.length) org.sameAs = sameAs;
   const website = { '@type': 'WebSite', '@id': `${site}/#website`, url: `${site}/`, name: c.brand, publisher: { '@id': `${site}/#org` }, inLanguage: 'en-IN' };
   return JSON.stringify({ '@context': 'https://schema.org', '@graph': [org, website] }).replace(/</g, '\\u003c');
@@ -145,11 +137,8 @@ const ctx = buildContext();
 const FACTS = [
   ['company.cin', 'CIN (Companies Act, Razorpay)'],
   ['company.office_full', 'Registered office address with PIN code'],
+  ['company.email', 'Public email address (Razorpay, Play, Apple)'],
   ['company.phone', 'Public support phone number (Razorpay, Play, Apple)'],
-  ['grievance_officer.name', 'Grievance Officer name (IT Rules, Consumer Protection E-commerce Rules)'],
-  ['grievance_officer.designation', 'Grievance Officer designation'],
-  ['company.whatsapp', 'WhatsApp Business number (early access button)'],
-  ['company.founder_name', 'Founder name for the About page'],
 ];
 
 // ---------------------------------------------------------------- template
@@ -358,7 +347,7 @@ const expires = new Date(today.getTime() + 330 * 864e5);
 fs.mkdirSync(path.join(OUT, '.well-known'), { recursive: true });
 fs.writeFileSync(
   path.join(OUT, '.well-known', 'security.txt'),
-  `Contact: mailto:${cfg.emails.support}\nExpires: ${expires.toISOString().replace(/\.\d+Z$/, 'Z')}\nPreferred-Languages: en, hi\nCanonical: ${cfg.site.url}/.well-known/security.txt\nPolicy: ${cfg.site.url}/privacy\n`,
+  `Contact: mailto:${cfg.company.email}\nExpires: ${expires.toISOString().replace(/\.\d+Z$/, 'Z')}\nPreferred-Languages: en, hi\nCanonical: ${cfg.site.url}/.well-known/security.txt\nPolicy: ${cfg.site.url}/privacy\n`,
 );
 fs.writeFileSync(
   path.join(OUT, 'site.webmanifest'),

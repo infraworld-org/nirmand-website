@@ -12,32 +12,19 @@
     "legal_name": "Nirmand India Private Limited",
     "brand": "Nirmand",
     "incorporated": "2026-10-07",
-    "cin": "",
-    "gstin": "",
+    "cin": "U58202MP2026PTC087422",
     "office": {
-      "line1": "",
-      "line2": "",
+      "line1": "Gajanan Bhawan, EC 63, Scheme No. 94 C",
+      "line2": "Opposite Bombay Hospital",
       "city": "Indore",
       "state": "Madhya Pradesh",
-      "pin": "",
+      "pin": "452010",
       "country": "India"
     },
-    "phone": "",
+    "email": "ops@nirmand.com",
+    "phone": "+91 96699 29990",
     "whatsapp": "",
-    "hours": "Monday to Saturday, 10:00 am to 6:00 pm IST",
-    "founder_name": "",
-    "founder_title": "Founder"
-  },
-
-  "emails": {
-    "support": "support@nirmand.com",
-    "grievance": "grievance@nirmand.com",
-    "privacy": "privacy@nirmand.com"
-  },
-
-  "grievance_officer": {
-    "name": "",
-    "designation": ""
+    "hours": "Monday to Saturday, 10:00 am to 6:00 pm IST"
   },
 
   "social": {
