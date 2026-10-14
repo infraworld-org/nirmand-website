@@ -355,7 +355,20 @@ for (const f of fs.readdirSync(path.join(SRC, 'pages')).sort()) {
   const html = render(layout, { ...ctx, page }, where);
   pages.push({ slug, file: `${slug}.html`, html, meta: { ...meta, sitemap: !meta.noindex && slug !== '404' } });
   if (APP_PAGES.has(slug)) {
-    const appPage = { ...page, app: 'yes', jsonld: '', robots: 'noindex, nofollow', intro: inAppLinks(intro), body: inAppLinks(body) };
+    // Rendered again with page.app set, so <!--if !page.app--> … <!--/if !page.app--> keeps
+    // prices and how-to-buy lines out of the copy the app opens (store rules on steering).
+    const appCtx = { ...ctx, page: { app: 'yes' } };
+    const appBody = addHeadingIds(render(raw.slice(fm[0].length), appCtx, where));
+    const appIntro = meta.intro ? render(meta.intro, appCtx, where) : '';
+    const appPage = {
+      ...page,
+      app: 'yes',
+      jsonld: '',
+      robots: 'noindex, nofollow',
+      intro: inAppLinks(appIntro),
+      toc: meta.toc === false ? '' : toc(appBody),
+      body: inAppLinks(appBody),
+    };
     const appHtml = render(layout, { ...ctx, page: appPage }, `${where} (in-app)`);
     pages.push({ slug: `in-app/${slug}`, file: `in-app/${slug}.html`, html: appHtml, meta: { sitemap: false } });
   }
@@ -456,6 +469,11 @@ for (const p of pages) {
   for (const bad of [/to be added/i, /lorem ipsum/i, /\bTODO\b/, /\bTBD\b/, /\{\{|\}\}/, /\bundefined\b/, /\bNaN\b/, /\[object Object\]/]) {
     const m = text.match(bad);
     if (m) errors.push(`${name}: leftover text "${m[0]}"`);
+  }
+  // in-app copies open inside the store builds of the app: no price may show there
+  if (p.slug.startsWith('in-app/')) {
+    const m = text.match(/₹|&#(?:8377|x20[bB]9);|\bRs\b|\bINR\b/);
+    if (m) errors.push(`${name}: shows a price ("${m[0]}"); wrap it in <!--if !page.app--> … <!--/if !page.app-->`);
   }
   // links (markup only: scripts and styles are skipped)
   for (const m of text.matchAll(/\s(?:href|src)="([^"]*)"/g)) {

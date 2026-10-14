@@ -91,3 +91,9 @@ header, no footer and no link to the home page, pricing, checkout or early acces
 stay as plain text). Links between the listed pages stay links and keep `?app=1`. The list of
 pages lives only in that redirect's `source`: add a page there and the build makes its copy. The
 copies are `noindex` and their canonical points at the normal page.
+
+The copies open inside the store builds of the app, so they never show a price or say how or
+where to buy (App Store and Play rules on steering). In a page, wrap such a line or FAQ in
+`<!--if !page.app--> … <!--/if !page.app-->`: the normal page keeps it, the copy drops it. The
+build fails if a copy still shows `₹`, `Rs` or `INR`. The terms have one text for both copies,
+so they name no amount.
