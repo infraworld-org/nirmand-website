@@ -285,6 +285,38 @@ for (const [file, slug] of [
   pages.push({ slug, file, html, meta: { sitemap: true, priority: slug ? '0.8' : '1.0' } });
 }
 
+// ?app=1 pages: the app opens privacy, terms, help and the pages they link to as content only
+// (no header, no footer, no way to pricing or checkout). The list lives in ONE place, the
+// vercel.json redirect that sends /<slug>?app=1 to /in-app/<slug>; this build makes those copies.
+const vercelJson = JSON.parse(fs.readFileSync(path.join(ROOT, 'vercel.json'), 'utf8'));
+const appRule = (vercelJson.redirects || []).find((r) => (r.has || []).some((h) => h.type === 'query' && h.key === 'app'));
+const APP_PAGES = new Set((appRule?.source.match(/^\/:slug\(([\w|-]+)\)$/)?.[1] || '').split('|').filter(Boolean));
+if (!APP_PAGES.size) errors.push('vercel.json: the ?app=1 redirect (source "/:slug(privacy|terms|...)") is missing');
+if (appRule && appRule.destination !== '/in-app/:slug') errors.push('vercel.json: the ?app=1 redirect must go to /in-app/:slug');
+const inAppUnlinked = new Set();
+
+// Links inside an in-app page: a page on the list stays a link (to its in-app copy, ?app=1
+// kept); any other page of ours (home, pricing, buy, download) becomes plain text. Mail, phone
+// and other websites stay as they are.
+function inAppLinks(html) {
+  return html.replace(/<a\b([^>]*?)\shref="([^"]*)"([^>]*)>([\s\S]*?)<\/a>/g, (m, pre, href, post, text) => {
+    if (/^(#|mailto:|tel:)/i.test(href)) return m;
+    let url;
+    try {
+      url = new URL(href, `${cfg.site.url}/`);
+    } catch {
+      return text;
+    }
+    if (!/(^|\.)nirmand\.com$/i.test(url.hostname)) return m;
+    const slug = url.pathname.replace(/^\//, '').replace(/\.html$/, '');
+    if (!APP_PAGES.has(slug)) {
+      inAppUnlinked.add(`/${slug}`);
+      return text;
+    }
+    return `<a${pre} href="/in-app/${slug}?app=1${url.hash}"${post}>${text}</a>`;
+  });
+}
+
 // content pages
 const layout = fs.readFileSync(path.join(SRC, 'layout.html'), 'utf8');
 for (const f of fs.readdirSync(path.join(SRC, 'pages')).sort()) {
@@ -307,12 +339,10 @@ for (const f of fs.readdirSync(path.join(SRC, 'pages')).sort()) {
   let body = addHeadingIds(render(raw.slice(fm[0].length), ctx, where));
   const intro = meta.intro ? render(meta.intro, ctx, where) : '';
   const updated = meta.updated === 'policies' ? ctx.site.policies_updated_human : meta.updated ? human(meta.updated) : '';
-  const redirectTo = meta.redirect_config ? lookup(ctx, meta.redirect_config) : '';
   const page = {
     ...meta,
     slug,
     heading: meta.heading || meta.title,
-    redirect: filled(redirectTo) ? JSON.stringify(redirectTo) : '',
     jsonld: jsonLd(meta, body),
     canonical: slug === '404' ? '' : `${cfg.site.url}/${slug}`,
     robots: meta.noindex ? 'noindex, follow' : 'index, follow',
@@ -324,9 +354,34 @@ for (const f of fs.readdirSync(path.join(SRC, 'pages')).sort()) {
   };
   const html = render(layout, { ...ctx, page }, where);
   pages.push({ slug, file: `${slug}.html`, html, meta: { ...meta, sitemap: !meta.noindex && slug !== '404' } });
+  if (APP_PAGES.has(slug)) {
+    // Rendered again with page.app set, so <!--if !page.app--> … <!--/if !page.app--> keeps
+    // prices and how-to-buy lines out of the copy the app opens (store rules on steering).
+    const appCtx = { ...ctx, page: { app: 'yes' } };
+    const appBody = addHeadingIds(render(raw.slice(fm[0].length), appCtx, where));
+    const appIntro = meta.intro ? render(meta.intro, appCtx, where) : '';
+    const appPage = {
+      ...page,
+      app: 'yes',
+      jsonld: '',
+      robots: 'noindex, nofollow',
+      intro: inAppLinks(appIntro),
+      toc: meta.toc === false ? '' : toc(appBody),
+      body: inAppLinks(appBody),
+    };
+    const appHtml = render(layout, { ...ctx, page: appPage }, `${where} (in-app)`);
+    pages.push({ slug: `in-app/${slug}`, file: `in-app/${slug}.html`, html: appHtml, meta: { sitemap: false } });
+  }
+}
+for (const slug of APP_PAGES) {
+  if (!pages.some((p) => p.slug === `in-app/${slug}`)) errors.push(`vercel.json: ?app=1 lists "${slug}" but src/pages has no such page`);
 }
 
-for (const p of pages) fs.writeFileSync(path.join(OUT, p.slug ? `${p.slug}.html` : 'index.html'), p.html);
+for (const p of pages) {
+  const file = path.join(OUT, p.slug ? `${p.slug}.html` : 'index.html');
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, p.html);
+}
 
 // -------------------------------------------------------- generated files
 const indexable = pages.filter((p) => p.meta.sitemap);
@@ -415,6 +470,11 @@ for (const p of pages) {
     const m = text.match(bad);
     if (m) errors.push(`${name}: leftover text "${m[0]}"`);
   }
+  // in-app copies open inside the store builds of the app: no price may show there
+  if (p.slug.startsWith('in-app/')) {
+    const m = text.match(/₹|&#(?:8377|x20[bB]9);|\bRs\b|\bINR\b/);
+    if (m) errors.push(`${name}: shows a price ("${m[0]}"); wrap it in <!--if !page.app--> … <!--/if !page.app-->`);
+  }
   // links (markup only: scripts and styles are skipped)
   for (const m of text.matchAll(/\s(?:href|src)="([^"]*)"/g)) {
     checkLink(m[1], p, name);
@@ -451,9 +511,64 @@ function checkLink(href, page, name) {
   if (hash && !idsByPage.get(slug).has(hash)) errors.push(`${name}: link ${href} — #${hash} not found on /${slug}`);
 }
 
+// ---------------------------------------------------- /buy -> checkout (proxy.ts)
+// The edge redirect in proxy.ts holds the checkout address as one constant. Its only source is
+// site.config.json (buy.checkout_url). A local build checks the host answers, then writes the
+// constant; on Vercel the build only checks, and a proxy.ts out of step with the config stops
+// the deploy (the live site keeps its last good redirect).
+await syncCheckout();
+
+async function syncCheckout() {
+  const want = cfg.buy.checkout_url || '';
+  if (want) {
+    const why = await checkoutProblem(want);
+    if (why) {
+      errors.push(`buy.checkout_url ${want}: ${why}. /buy never forwards to a host that is not live; leave it empty until it is`);
+      return;
+    }
+  }
+  const file = path.join(ROOT, 'proxy.ts');
+  const src = fs.readFileSync(file, 'utf8');
+  const line = /^const CHECKOUT_URL = (['"])(.*?)\1;(\r?)$/m;
+  const m = src.match(line);
+  if (!m) {
+    errors.push('proxy.ts: the line `const CHECKOUT_URL = ...;` is missing');
+    return;
+  }
+  if (m[2] === want) return;
+  if (process.env.VERCEL) {
+    errors.push(`proxy.ts has CHECKOUT_URL ${JSON.stringify(m[2])} but site.config.json has ${JSON.stringify(want)}: run node scripts/build.mjs locally and commit proxy.ts`);
+    return;
+  }
+  fs.writeFileSync(file, src.replace(line, (_, q, v, cr) => `const CHECKOUT_URL = '${want}';${cr}`));
+  warnings.push(`proxy.ts: CHECKOUT_URL is now ${JSON.stringify(want)} (from site.config.json); commit proxy.ts`);
+}
+
+async function checkoutProblem(raw) {
+  let u;
+  try {
+    u = new URL(raw);
+  } catch {
+    return 'not a URL';
+  }
+  if (u.protocol !== 'https:') return 'must start with https://';
+  if (!u.hostname.endsWith('.nirmand.com') || u.hostname === 'www.nirmand.com') {
+    return 'must be a nirmand.com subdomain such as pay.nirmand.com (not nirmand.com itself)';
+  }
+  if (u.pathname !== '/buy' || u.search || u.hash || u.port || u.username) return 'must be exactly https://<host>/buy';
+  try {
+    const res = await fetch(u, { redirect: 'manual', signal: AbortSignal.timeout(10_000) });
+    if (res.status >= 400) return `the host answered HTTP ${res.status}`;
+  } catch (e) {
+    return `the host did not answer (${e.cause?.code || e.name})`;
+  }
+  return '';
+}
+
 // ------------------------------------------------------------------ report
 const out = [];
 out.push(`Built ${pages.length} pages into public/ (${files.size} files).`);
+out.push(`In-app copies (?app=1): ${APP_PAGES.size} pages. Shown there as plain text, not links: ${[...inAppUnlinked].sort().join(', ') || 'none'}.`);
 for (const [f] of FACTS) if (!filled(lookup(ctx, f)) && !missingFacts.has(f)) missingFacts.set(f, new Set());
 if (missingFacts.size) {
   out.push('');

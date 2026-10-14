@@ -5,7 +5,9 @@
   "outputDirectory": "public",
   "cleanUrls": true,
   "trailingSlash": false,
+  "proxy": { "entrypoint": "proxy.ts", "matcher": "/buy" },
   "redirects": [
+    { "source": "/:slug(privacy|terms|refund-policy|help|delete-account|grievance|contact|delivery-policy|ai-content-policy|community-guidelines|news-policy)", "has": [{ "type": "query", "key": "app", "value": "1" }], "destination": "/in-app/:slug", "permanent": false },
     { "source": "/company", "destination": "/about", "permanent": true },
     { "source": "/company.html", "destination": "/about", "permanent": true },
     { "source": "/about-us", "destination": "/about", "permanent": true },
@@ -58,6 +60,10 @@
     {
       "source": "/assets/(img|app|real|brands|video|css)/(.*)",
       "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }]
+    },
+    {
+      "source": "/in-app/(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     },
     {
       "source": "/buy",
