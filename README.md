@@ -18,6 +18,7 @@ assets/               images, fonts, css, video
 static/               files served from the site root (favicon.ico)
 scripts/build.mjs     turns all of the above into public/ (no dependencies, Node 18+)
 vercel.json           build settings, clean URLs, redirects, security headers
+proxy.ts              the /buy redirect, run at the edge (Vercel Routing Middleware)
 ```
 
 `public/` is generated on every deploy and is not committed.
@@ -64,8 +65,29 @@ fact is missing; use it before the Razorpay review.
 
 ## Checkout
 
-`/buy` is a holding page until the web checkout is live. The checkout itself is the Expo web
-build of the app (`infraworld-app`, route `/buy`) on its own subdomain. When it is live, set
-`buy.checkout_url` in `site.config.json` to its address (for example
-`https://pay.nirmand.com/buy`); `/buy` then forwards there and keeps the `?project=` value
-the app adds.
+The checkout is the Expo web build of the app (`infraworld-app`, route `/buy`) on its own
+subdomain. The app opens it directly; `nirmand.com/buy` is for links from outside the app.
+
+`/buy` never renders a page. `proxy.ts` answers it at the edge (wired in `vercel.json` under
+`proxy`, matcher `/buy`), before any page, script or cache sees the request:
+
+- `buy.checkout_url` empty (today): `/buy` goes to `/pricing` and every query value is dropped,
+  so a one-time purchase link (`i`) never reaches a page.
+- `buy.checkout_url` set (for example `https://pay.nirmand.com/buy`): `/buy` goes there with only
+  `project` and `i`, exactly as they came in.
+
+To switch it on: make sure the checkout host is live, set `buy.checkout_url`, run
+`node scripts/build.mjs` (it checks the host answers, then writes the address into `proxy.ts`)
+and commit both files. The build refuses an address that is not `https://<subdomain>.nirmand.com/buy`
+or does not answer. On Vercel the build also fails when `proxy.ts` and the config disagree, so
+the live site keeps its last good redirect. `src/pages/buy.html` is only a fallback that shows
+if the edge redirect is not running.
+
+## Pages opened from the app (`?app=1`)
+
+The app opens policy and help pages with `?app=1`. The `?app=1` redirect at the top of
+`vercel.json` sends `/<page>?app=1` to `/in-app/<page>?app=1`, a copy the build makes with no
+header, no footer and no link to the home page, pricing, checkout or early access (those words
+stay as plain text). Links between the listed pages stay links and keep `?app=1`. The list of
+pages lives only in that redirect's `source`: add a page there and the build makes its copy. The
+copies are `noindex` and their canonical points at the normal page.
