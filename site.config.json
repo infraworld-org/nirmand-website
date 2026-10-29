@@ -5,7 +5,7 @@
     "name": "Nirmand",
     "url": "https://nirmand.com",
     "tagline": "Your home, build together.",
-    "policies_updated": "2026-10-14"
+    "policies_updated": "2026-10-29"
   },
 
   "company": {
@@ -39,7 +39,7 @@
     "android_url": "",
     "ios_url": "",
     "early_access_message": "Hi Nirmand, I would like early access to the app. My city: ",
-    "delete_in_app": ""
+    "delete_in_app": "Open the app and go to Profile, then More, then Delete account. Read what is deleted and what is kept, type DELETE and confirm. If you signed in a while ago, the app asks you to sign in again first."
   },
 
   "buy": {
