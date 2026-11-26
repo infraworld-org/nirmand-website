@@ -83,6 +83,7 @@ function buildContext() {
     app: cfg.app,
     buy: cfg.buy,
     data_location: cfg.data_location,
+    grievance_officer: cfg.grievance_officer || {},
     catalogue: {
       ...cfg.catalogue,
       products_count: digits(cfg.catalogue.products),
@@ -140,6 +141,16 @@ const FACTS = [
   ['company.email', 'Public email address (Razorpay, Play, Apple)'],
   ['company.phone', 'Public support phone number (Razorpay, Play, Apple)'],
 ];
+
+// Grievance Officer: IT Rules 2021 rule 3(2), SPDI Rules 2011 rule 5(9), Consumer Protection
+// (E-Commerce) Rules 2020 rule 4(4). Always an error, never a MISSING fact: the site must not
+// build without the name and designation, with or without --strict, and wrapping the line in
+// <!--if--> on a page does not get around it.
+for (const k of ['name', 'designation']) {
+  if (!filled(cfg.grievance_officer?.[k])) {
+    errors.push(`site.config.json: grievance_officer.${k} is empty. The grievance and privacy pages must name the Grievance Officer; fill it in.`);
+  }
+}
 
 // ---------------------------------------------------------------- template
 const esc = (s) =>

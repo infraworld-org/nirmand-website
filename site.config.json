@@ -5,7 +5,7 @@
     "name": "Nirmand",
     "url": "https://nirmand.com",
     "tagline": "Your home, build together.",
-    "policies_updated": "2026-11-24"
+    "policies_updated": "2026-11-26"
   },
 
   "company": {
@@ -25,6 +25,11 @@
     "phone": "+91 96699 29990",
     "whatsapp": "",
     "hours": "Monday to Saturday, 10:00 am to 6:00 pm IST"
+  },
+
+  "grievance_officer": {
+    "name": "",
+    "designation": ""
   },
 
   "social": {

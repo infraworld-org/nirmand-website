@@ -103,6 +103,7 @@
     <tr><td>Cloudflare</td><td>Storing and delivering images and files</td><td>Photos, documents, product images</td></tr>
     <tr><td>Google</td><td>Google sign-in, Gemini AI for previews and room understanding, company email</td><td>Your Google account details, room photos and product images, emails you send us</td></tr>
     <tr><td>OpenAI</td><td>AI image generation for previews</td><td>Room photos and product images</td></tr>
+    <tr><td>fal.ai</td><td>Running AI models that find walls, floors and other surfaces in room photos, and create previews</td><td>Room photos and product images</td></tr>
     <tr><td>Razorpay</td><td>Payments</td><td>Order and payment details</td></tr>
     <tr><td>SMS and messaging providers</td><td>Sending OTPs and messages</td><td>Mobile number, message content</td></tr>
     <tr><td>Sentry</td><td>Crash reports</td><td>Device data, crash details</td></tr>
@@ -124,7 +125,7 @@
 
 <h2>AI previews and your photos</h2>
 <ul>
-  <li>To create an AI preview, we send your room photo and the product you chose to Google's Gemini API or OpenAI's API. We send what is needed to make the image, never your name, phone number or email.</li>
+  <li>To create an AI preview, we send your room photo and the product you chose to Google's Gemini API, or to OpenAI's models directly or through fal.ai. We send what is needed to make the image, never your name, phone number or email.</li>
   <li>AI images are illustrations made by a computer. Colours, textures, sizes and fitting can look different in real life. Read our <a href="/ai-content-policy">AI content policy</a>.</li>
   <li>Please avoid photos that show people's faces, documents or anything private.</li>
   <li>Previews belong to the project they were made in, and only members you allow can see them.</li>
@@ -179,6 +180,7 @@
 <p>When we change this policy, we update this page and the “Last updated” date. If a change is significant, we will tell you in the app or by email before it applies to you.</p>
 
 <h2>Contact us</h2>
+<p>Grievance Officer: {{grievance_officer.name}}, {{grievance_officer.designation}}. You can reach the Grievance Officer at the email address and phone number below.</p>
 <div class="facts">
   <div class="fact"><p class="k">Email</p><p class="v"><a href="mailto:{{company.email}}?subject=Privacy">{{company.email}}</a></p><p class="s">Use the subject “Privacy”</p></div>
   <!--if company.phone--><div class="fact"><p class="k">Phone</p><p class="v"><a href="{{company.phone_tel}}">{{company.phone}}</a></p><p class="s">{{company.hours}}</p></div><!--/if company.phone-->

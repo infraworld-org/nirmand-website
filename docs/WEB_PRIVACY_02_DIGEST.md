@@ -1,7 +1,12 @@
 # WEB-PRIVACY-02 — Privacy policy: pending lines · 365 din · data location · Last updated
 
-**Aadesh:** founder, 24-Nov-2026 · **Repo:** `nirmand-website` · **Branch:** `claude/web-privacy-02` (base `main`
-@ `5c867a8`, PR #5 ka merge) · **PR:** draft · **Deploy:** founder ka (merge `main` = Vercel Production, README).
+**Aadesh:** founder, 24-Nov-2026 + doosra aadesh 26-Nov-2026 (tareekh merge-din · fal.ai · Grievance Officer) ·
+**Repo:** `nirmand-website` · **Branch:** `claude/web-privacy-02` (base `main` @ `5c867a8`, PR #5 ka merge) ·
+**PR:** #6, ready for review — merge NAHI · **Deploy:** founder ka (merge `main` = Vercel Production, README).
+
+> 🔴 **Grievance Officer ka naam aur designation khaali hain, isliye build abhi jaan-boojh kar FAIL hota hai**
+> (§4a). Is haal me PR ka Vercel preview bhi fail hoga, aur merge karne par production deploy fail hoga. Tab live
+> site purane deploy par hi rahegi, yani is PR ka koi badlav live nahi jaayega. Pehle naam bharo, phir merge.
 
 Ye file publish NAHI hoti — `scripts/build.mjs` `docs/` nahi padhta (build ke baad `public/` me grep: 0).
 
@@ -19,9 +24,12 @@ Mumbai tathya: brain `40_Sessions/2026-11-24-mumbai-switch-seal.md`.
 | 1   | PENDING_LINES ki har line verbatim         | **Pehle se LIVE** (PR #5, 13-Nov). File me 1 hi line; repo + live + in-app teeno me EXACT MATCH. Badlav: 0 |
 | 2   | Product-view records 365 din               | **Pehle se LIVE** (privacy + delete-account, PR #5). Badlav: 0. 🔴 DB ka 365 Mumbai par naapa nahi (§2)     |
 | 3   | Data location: app DB India (Mumbai)       | **Badla** — 1 naya sentence. `data_location` (R2 wali line) byte-wahi, chhui nahi                          |
-| 4   | "Last updated" + milaan-table              | **Badla** — `2026-11-13` → `2026-11-24`. 🔴 app `POLICY_VERSION` usi din (§4). Milaan-table §5              |
+| 4   | "Last updated" + milaan-table              | **Badla** — `2026-11-13` → `2026-11-26` (26-Nov aadesh: merge-din). 🔴 app `POLICY_VERSION` usi din (§4). Milaan-table §5 |
+| 5   | fal.ai (26-Nov)                            | **Badla** — privacy provider table me row + AI para; ai-content-policy ka para. Founder ka text hu-ba-hu      |
+| 6   | Grievance Officer (26-Nov)                 | **Badla** — `site.config.json` `grievance_officer {name, designation}` (khaali) + grievance aur privacy par line. 🔴 khaali = build FAIL (§4a) |
 
-Diff: `src/pages/privacy.html` 1 line · `site.config.json` 1 line · ye digest.
+Diff: `src/pages/privacy.html` · `src/pages/grievance.html` · `src/pages/ai-content-policy.html` ·
+`site.config.json` · `scripts/build.mjs` (gate) · `README.md` (Grievance Officer ka note) · ye digest.
 
 ---
 
@@ -93,18 +101,45 @@ where n.nspname = 'public'
 
 ## 4. "Last updated" — aur 🔴 app ka POLICY_VERSION
 
-`site.policies_updated` `2026-11-13` → `2026-11-24`. Ye EK tareekh har policy panne par lagti hai (privacy, terms,
-refund, delivery, grievance, delete-account, ai-content, community, news + in-app copies). Build me naapa: privacy +
-terms, dono copies → "Last updated: 24 November 2026". Ek tareekh isliye ki app ka EK `POLICY_VERSION` Terms aur
-Privacy dono ka hai (POLICY_VERSION_13NOV_DIGEST).
+`site.policies_updated` `2026-11-13` → `2026-11-26` (24-Nov ko `2026-11-24` tha; 26-Nov aadesh: merge-din). Ye EK
+tareekh har policy panne par lagti hai (privacy, terms, refund, delivery, grievance, delete-account, ai-content,
+community, news + in-app copies). Build me naapa (scratch copy, test-naam ke saath — §8): privacy, grievance, terms,
+ai-content-policy + in-app terms → "Last updated: 26 November 2026". Ek tareekh isliye ki app ka EK `POLICY_VERSION`
+Terms aur Privacy dono ka hai (POLICY_VERSION_13NOV_DIGEST).
 
 🔴 **Jod (app repo, is PR me nahi):** `record_policy_consent` naya manzoori-record `app_config.POLICY_VERSION` se
 likhta hai, aur ye live panne ki tareekh ke barabar hona chahiye. Deploy ke **usi din**:
 
 1. Mumbai par `POLICY_VERSION` → deploy ki tareekh (neeche §7 kadam 3).
-2. App repo `scripts/redteam-auth02.js:43` `EXPECTED_PAGE_DATE` → `'Last updated: 24 November 2026'`.
+2. App repo `scripts/redteam-auth02.js:43` `EXPECTED_PAGE_DATE` → `'Last updated: 26 November 2026'`.
 
-Merge 24-Nov ke baad ho → pehle `policies_updated` ko merge ke din par badlo, phir wahi tareekh POLICY_VERSION me.
+Merge 26-Nov ke baad ho (jaise naam kal aaye) → pehle `policies_updated` ko merge ke din par badlo, phir wahi
+tareekh POLICY_VERSION aur R4 me.
+
+## 4a. Grievance Officer (26-Nov aadesh)
+
+**Kyun:** IT Rules 2021 rule 3(2) · SPDI Rules 2011 rule 5(9) · Consumer Protection (E-Commerce) Rules 2020
+rule 4(4). Ye niyam Grievance Officer ka naam, designation aur contact site par maangte hain. **Itihaas:** 14-Oct
+(`c25a5f9`, SEAL-16OCT §3b) ko "Grievance Officer" line site se hataayi gayi thi. 26-Nov ke founder aadesh se wapas
+aa rahi hai.
+
+**Kya bana:**
+- `site.config.json`: `"grievance_officer": { "name": "", "designation": "" }`. Ye company block ke turant baad hai.
+  Naam founder dega.
+- Grievance → "Where to send a complaint" aur privacy → "Contact us", dono me ye line aayi, aur uske turant neeche
+  pehle wale email / phone / address facts hain:
+  > Grievance Officer: <name>, <designation>. You can reach the Grievance Officer at the email address and phone
+  > number below.
+- `scripts/build.mjs`: `name` ya `designation` me se koi bhi khaali ho to **ERROR**, chahe `--strict` ho ya na ho.
+  Ye MISSING-fact wali chetavni nahi hai.
+- `README.md` me ek para joda: "The Grievance Officer".
+
+**Naam ke saath designation bhi kyun:** aadesh me sirf naam par FAIL likha tha. Maine designation par bhi FAIL
+rakha, kyunki E-Commerce Rules rule 4(4) designation alag se maangta hai aur line ka format "<name>,
+<designation>" hai. Aapko sirf naam ka gate chahiye ho to `build.mjs` ki list se `'designation'` hata dena.
+
+**Naam bharne ka kadam:** `site.config.json` me `name` aur `designation` bharo → `node scripts/build.mjs` → exit 0
+→ commit → push.
 
 ---
 
@@ -141,7 +176,7 @@ display or target ads or marketing communications"*; sponsored content / native 
 | 11  | Other financial info         | Yes · No · Opt · App func                                       | "Site records: materials, payments, expenses", "quotations, rates", "payments you record with them"                | ✅      |
 | 12  | Approximate location         | Yes · No · Opt · App func, Analytics                            | City ✅; **par** *"We may use your city and the products you view to choose which promotions to show you, including promotions from brands"* | 🔴 purpose me "Personalization" + "Advertising or marketing" nahi |
 | 13  | Precise location             | Yes · No · Opt · App func                                       | "your location if you allow it … only while you are using it" (shop GPS ka zikr nahi — chhota)                     | ✅      |
-| 14  | Photos                       | Yes · No (service providers) · Opt · App func                   | Room photos, documents, people photos ✅; **par** AI para sirf "Gemini API or OpenAI's API" kehta hai, provider table me **fal.ai nahi** — code me fal raasta hai (`segment-surface/index.ts`, `generation-openai.ts:45` → `fal.run`) | 🔴 (agar fal live hai) |
+| 14  | Photos                       | Yes · No (service providers) · Opt · App func                   | Room photos, documents, people photos ✅. fal.ai (code: `segment-surface/index.ts`, `generation-openai.ts:45` → `fal.run`) — **26-Nov se policy me**: provider row + *"… to Google's Gemini API, or to OpenAI's models directly or through fal.ai."* (privacy + ai-content-policy) | ✅ (24-Nov 🔴 tha) |
 | 15  | Videos                       | No                                                              | Kahin nahi                                                                                                         | ✅      |
 | 16  | Voice or sound recordings    | No                                                              | "Nirmand receives only the text"                                                                                   | ✅      |
 | 17  | Music / other audio          | No                                                              | Kahin nahi                                                                                                         | ✅      |
@@ -173,16 +208,17 @@ display or target ads or marketing communications"*; sponsored content / native 
 
 ### 5d. Service providers (naksha §2 ↔ policy table)
 
-Supabase ✅ · Cloudflare ✅ · Google (Gemini) ✅ · OpenAI ✅ · **fal.ai 🔴 nahi** · Sentry ✅ · Expo ✅ · MSG91 ✅
-("SMS and messaging providers") · Razorpay ✅ · (Vercel sirf policy me — website hosting, theek).
+Supabase ✅ · Cloudflare ✅ · Google (Gemini) ✅ · OpenAI ✅ · fal.ai ✅ (26-Nov row) · Sentry ✅ · Expo ✅ ·
+MSG91 ✅ ("SMS and messaging providers") · Razorpay ✅ · (Vercel sirf policy me — website hosting, theek).
 
-**Ginti (41 row):** ✅ 32 · ⚠️ 4 (#3, #7, #25, C2) · 🔴 5 (#1, #5, #12, #14, #24) — #24 me ⚠️ bhi.
+**Ginti (41 row, 26-Nov):** ✅ 33 · ⚠️ 4 (#3, #7, #25, C2) · 🔴 4 (#1, #5, #12, #24). #24 me ek ⚠️ bhi hai. 24-Nov
+ko 🔴 5 the; #14 fal.ai ab ✅ hai.
 
 ---
 
 ## 6. Faisle chahiye (founder) — kuch bhi lagaya NAHI
 
-Policy ka text founder ka hai; isliye neeche ka copy **sirf sujhav** hai. Form ke badlav app repo ke
+Policy ka text founder ka hai; isliye neeche ka copy **sirf sujhav** hai (#3 chhod kar — wo 26-Nov ko laga). Form ke badlav app repo ke
 `PLAY_DATA_SAFETY_v1.md` me (app lane).
 
 1. 🔴 **Purposes (#12, #24):** form me Approximate location → `Personalization` + `Advertising or marketing`; App
@@ -190,10 +226,8 @@ Policy ka text founder ka hai; isliye neeche ka copy **sirf sujhav** hai. Form k
    zyada batana = listing par ek line, kam batana = ullanghan). Ya policy se brand-promo targeting hatao.
 2. 🔴 **Name + Phone purpose (#1, #5):** professionals ko invite + WhatsApp city news = marketing. Form me
    `Advertising or marketing` jodo — ya ye dono kaam band hain to policy se lines hatao.
-3. 🔴 **fal.ai (#14):** pehle naapo — Mumbai secrets me `FAL_KEY` / `GEN_PROVIDER` live hai? Haan → provider table me
-   row:
-   `fal.ai | Running AI models that find walls, floors and other surfaces in room photos, and create previews | Room photos and product images`
-   aur AI para: *"… to Google's Gemini API, or to OpenAI's models directly or through fal.ai."*
+3. ✅ **fal.ai (#14) — LAGAYA 26-Nov (founder aadesh):** provider table me row hai, aur AI para privacy +
+   ai-content-policy dono me hai. Text founder ka hai, hu-ba-hu.
 4. ⚠️ **Search (#25)** — "How you use the app" me: *"The words you type or say in search are sent to our servers to
    find products. We do not keep a search history in your account."*
 5. ⚠️ **App last opened (#24b)** — wahi section: *"We also record the day you last opened the app."* (24 mahine ke
@@ -206,36 +240,57 @@ Policy ka text founder ka hai; isliye neeche ka copy **sirf sujhav** hai. Form k
 **UNKNOWN (naapa nahi):**
 - Play ki "anonymised data = sharing nahi" chhoot 24-Nov search me pakki nahi hui. "Brands and partners"
   (statistics) ke liye "Shared: No" isi par tika hai → Help 10787469 ka "sharing" hissa aankh se padho.
-- fal.ai live use (upar #3) · Mumbai par 365 RUN (§2) · Supabase Storage me photos (§3).
+- Mumbai par 365 RUN (§2) · Supabase Storage me photos (§3). (fal.ai live hai ya nahi, ye ab policy ke liye
+  zaroori nahi: naam policy me hai.)
 
 ---
 
 ## 7. Founder ke kadam (kram se)
 
-1. PR review → **merge = Production deploy**. Merge 24-Nov ke baad → pehle `site.policies_updated` merge-din par.
-2. **Deploy naap:** `/privacy`, `/privacy?app=1`, `/terms?app=1` → "Last updated: 24 November 2026"; privacy me
-   "is in Mumbai, India." (purani tab band + hard refresh).
+0. **Grievance Officer ka naam + designation** do → `site.config.json` me bharna → `node scripts/build.mjs` exit 0
+   → commit + push (§4a). Iske bina merge mat karo: production build fail hoga aur site purani rahegi.
+1. PR review → **merge = Production deploy**. Merge 26-Nov ke baad ho → pehle `site.policies_updated` merge-din
+   par, aur neeche ke SQL + R4 me bhi wahi tareekh.
+2. **Deploy naap:** `/privacy`, `/privacy?app=1`, `/terms?app=1`, `/grievance` → "Last updated: 26 November 2026".
+   Privacy par "is in Mumbai, India." + "through fal.ai" + "Grievance Officer: <naam>, <designation>". Grievance par
+   bhi "Grievance Officer: …". Purani tab band karke hard refresh karna.
 3. **Usi din, Mumbai SQL editor** — POLICY_VERSION_13NOV_DIGEST ke kadam 1–4, sirf value aur note naye. Kadam 2 ki
-   ummeed ab `2026-11-13` (switch ke baad Mumbai par pehli baar dekh rahe ho; kuch aur → RUKO). Kadam 3 — naya tab,
-   POORA ek saath Run:
+   ummeed ab `2026-11-13` hai (switch ke baad Mumbai par pehli baar dekh rahe ho; kuch aur dikhe → RUKO). Kadam 3:
+   naya tab, POORA ek saath Run:
 
    ```sql
    select set_config('request.jwt.claims', json_build_object('sub', (select user_id::text from public.app_admins order by added_at limit 1), 'role', 'authenticated', 'aal', 'aal2')::text, false);
-   select public.admin_set_config('POLICY_VERSION', '2026-11-24', 'WEB-PRIVACY-02: privacy policy updated 24 Nov 2026 (app database in Mumbai, India)');
+   select public.admin_set_config('POLICY_VERSION', '2026-11-26', 'WEB-PRIVACY-02: privacy policy updated 26 Nov 2026 (app database in Mumbai, fal.ai, Grievance Officer)');
    select set_config('request.jwt.claims', '', false);
    ```
 
-   Phir kadam 4 ka verify: `value = 2026-11-24`, `admin_actions` me `set_config` row, actor = pehla admin.
-4. App repo: `scripts/redteam-auth02.js:43` `EXPECTED_PAGE_DATE` → `'Last updated: 24 November 2026'` (app lane PR).
+   Phir kadam 4 ka verify: `value = 2026-11-26`, `admin_actions` me `set_config` row, actor = pehla admin.
+4. App repo: `scripts/redteam-auth02.js:43` `EXPECTED_PAGE_DATE` → `'Last updated: 26 November 2026'` (app lane PR).
 5. §2 ki read-only query Mumbai par (365 RUN hua ya nahi).
 6. §6 ke faisle. App repo ke purane notes (PLAY_01_DIGEST §3 #4 + §7, PLAY_DATA_SAFETY_v1 §4 UNKNOWN-5 + §3 "30 din")
    app lane me sudharna.
 
-## 8. Naap (gates)
+## 8. Naap (gates) — 26-Nov
 
-- `node scripts/build.mjs` → exit 0, *"Built 28 pages into public/ (169 files)"*, in-app copies 11, plain-text
-  links: none.
-- `public/privacy.html` + `public/in-app/privacy.html`: naya paragraph hubahu; line #1 EXACT MATCH 1-1 baar.
-- `public/privacy.html`, `public/terms.html` + dono in-app copy: "Last updated: 24 November 2026".
-- `site.config.json` `data_location` byte-wahi (`git diff` me sirf `policies_updated`).
-- `public/` me `WEB_PRIVACY` / `PLAY_01`: 0 (digest publish nahi hota).
+**(a) Repo, naam khaali (jaisa commit hua):** `node scripts/build.mjs` → **exit 1**, `--strict` → exit 1. ERRORs:
+- `site.config.json: grievance_officer.name is empty …`
+- `site.config.json: grievance_officer.designation is empty …`
+- template-guard: `pages/grievance.html` + `pages/privacy.html` me `{{grievance_officer.name}}` aur
+  `{{grievance_officer.designation}}` khaali.
+
+**(b) Scratch copy (src, assets, static, scripts, config, vercel.json, proxy.ts), config me test-naam "Test Person" /
+"Test Designation"** (commit nahi hua): exit 0. *"Built 28 pages into public/ (169 files)"*. In-app copies 11,
+plain-text links: none.
+- grievance, privacy + dono in-app copies: `<p>Grievance Officer: Test Person, Test Designation. You can reach the
+  Grievance Officer at the email address and phone number below.</p>`. Grievance par iske neeche
+  `mailto:ops@nirmand.com?subject=Grievance` aur `tel:+919669929990` hain.
+- fal.ai: privacy me 2 baar (row + para), aur ai-content-policy + in-app copy me 1-1 baar. Founder ka sentence
+  hu-ba-hu: *"to Google's Gemini API, or to OpenAI's models directly or through fal.ai."*
+- privacy, grievance, terms, ai-content-policy + in-app terms: "Last updated: 26 November 2026".
+- 24-Nov ke badlav bache hain: Mumbai sentence privacy + in-app me 1-1 baar, aur line #1 EXACT MATCH 1-1 baar.
+
+**(c) Bypass koshish (scratch):** naam khaali rakha aur dono line `<!--if grievance_officer.name-->` me lapet di →
+**exit 1**, gate ke dono ERROR. Matlab line chhupa kar gate se bacha nahi ja sakta.
+
+**(d)** `site.config.json` `data_location` byte-wahi raha. `public/` me `WEB_PRIVACY` / `PLAY_01` / `milaan`: 0 (ye
+digest publish nahi hota).

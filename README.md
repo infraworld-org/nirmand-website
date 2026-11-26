@@ -31,6 +31,11 @@ with an empty value stay hidden, so the site never shows "to be added". The buil
 required facts are still missing. A WhatsApp number is optional: when it is filled, the early
 access buttons and the help, contact and refund pages also offer WhatsApp.
 
+**The Grievance Officer:** `grievance_officer.name` and `grievance_officer.designation` in
+`site.config.json`. The grievance and privacy pages show them with the company email and phone.
+Unlike other facts, these two are never hidden: while either is empty the build fails, so the site
+cannot deploy without them (IT Rules 2021, SPDI Rules 2011 rule 5(9), E-Commerce Rules 2020).
+
 **A price or pack:** change `pricing` in `site.config.json`. The homepage, the pricing page,
 help and the policies all read from there. Keep it the same as the app's `app_config`.
 
